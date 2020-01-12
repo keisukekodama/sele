@@ -1,40 +1,65 @@
-require 'selenium-webdriver'
+def registration_student(students)
+  # 生徒の名前と年齢を登録できるようにしなさい
+  student = {}
+  puts '生徒名を入力してください'
+  name = gets.chomp
+  puts '生徒の年齢を入力してください'
+  age = gets.to_i
+  # 登録した生徒の国語、数学、英語の点数を登録できるようにしなさい
+  puts "国語の得点は？"
+  national_launguage = gets.to_i
+  puts "数学の得点は？"
+  math = gets.to_i
+  puts "英語の得点は？"
+  english = gets.to_i
 
-@wait_time = 3 
-@timeout = 4
+  student[:name] = name
+  student[:age] = age
+  student[:national_launguage] = national_launguage
+  student[:math] = math
+  student[:english] = english
 
-# Seleniumの初期化
-# class ref: https://www.rubydoc.info/gems/selenium-webdriver/Selenium/WebDriver/Chrome
-Selenium::WebDriver.logger.output = File.join("./", "selenium.log")
-Selenium::WebDriver.logger.level = :warn
-driver = Selenium::WebDriver.for :chrome
-driver.manage.timeouts.implicit_wait = @timeout
-wait = Selenium::WebDriver::Wait.new(timeout: @wait_time)
+  students << student
 
-# Yahooを開く
-driver.get('http://54.92.62.121/')
+end
 
-# ちゃんと開けているか確認するため、sleepを入れる
-sleep 2
-
-#**
-  # ブラウザでさせたい動作を記載する
-
-  # ex. 検索欄に'Ruby'と入力して、検索ボタンを押す処理
-
-  # 検索欄/検索ボタン取得
-  begin
-    search_box = driver.find_element(:id, 'srchtxt') # 検索欄
-    search_btn = driver.find_element(:id, 'srchbtn') # 検索ボタン
-  rescue Selenium::WebDriver::Error::NoSuchElementError
-    p 'no such element error!!'
-    return
+def show_student_name(students)
+  # 登録された生徒の名前を番号を振って表示しなさい
+  number = 0
+  puts '見たい生徒の番号を入力してください'
+  students.each do |student|
+    puts "[#{number}]#{student[:name]}"
+    number+=1
   end
+  # 選択された生徒の名前、年齢、国語、数学、英語の点数を表示できるようにしなさい
+  input = gets.to_i
+  student = students[input]
+  puts "名前:#{student[:name]}"
+  puts "年齢:#{student[:age]}歳"
+  puts "国語:#{student[:national_launguage]}点"
+  puts "数学:#{student[:math]}点"
+  puts "英語:#{student[:english]}点"
 
-  # 入力欄に'Ruby'を入力し、検索ボタンを押下
-  search_box.send_keys 'Ruby'
-  search_btn.click
-#**
 
-# ドライバーを閉じる
-driver.quit
+end
+
+students = []
+
+while true
+  puts '行いたい項目を選択してください'
+  puts '[1]点数を登録する'
+  puts '[2]点数を確認する'
+  puts '[3]終了する'
+  input = gets.to_i
+  puts input
+  if input == 1
+    students = registration_student(students)
+  elsif input == 2
+    show_student_name(students)
+  elsif input == 3
+    # アプリケーションを終了させなさい
+    exit
+  else
+    puts '無効な値です'
+  end
+end
