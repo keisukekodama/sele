@@ -2,7 +2,7 @@ require 'selenium-webdriver'
 wait = Selenium::WebDriver::Wait.new(:timeout => 60)
 d = Selenium::WebDriver.for :chrome
 
-# 自分の
+# 自分
 # url = "http://54.92.62.121/"
 # 受講生の
 url = "http://18.177.70.113" 
