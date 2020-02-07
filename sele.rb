@@ -71,8 +71,7 @@ puts "インクリメンタルサーチエラー"
 end
 
 
-# d.find_element(:xpath, '//*[@href="/html/body/div[2]/div[1]/div[2]/div[1]/a"]').click
-# d.get.(url+"/groups/8/messages") 
+
 # d.find_element(:xpath, "//html/body/div[2]/div/div[2]/a[3]").click
 d.get(url+"/groups/1/messages")
 sleep 5
