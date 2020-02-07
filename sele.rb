@@ -14,8 +14,8 @@ email = d.find_element(:id, 'user_email')
 password = d.find_element(:id, 'user_password')
 confirmation = d.find_element(:id, 'user_password_confirmation')
 
-user1="tech@camp22"
-user2="tech@camp15"
+user1="tech@camp45"
+user2="tech@camp68"
 pass="techcamp3"
 
 name.send_keys(user1)
@@ -23,55 +23,38 @@ email.send_keys(user1)
 password.send_keys(pass)
 confirmation.send_keys(pass)
 d.find_element(:name,"commit").click
-# sleep 3
+wait.until {d.find_element(:class, "fa-cog").displayed?}
+
+
   # d.get(url+"/users/\d+\/edit").click
   d.find_element(:class, "fa-cog").click
-# sleep 3
+
   d.find_element(:class, "btn").click
   d.find_element(:class, "btn").click
-# sleep 3
+  wait.until {d.find_element(:id, 'user_name').displayed?}
   # d.get(url+"/users/sign_up")
   name = d.find_element(:id, 'user_name')
   email = d.find_element(:id, 'user_email')
   password = d.find_element(:id, 'user_password')
   confirmation = d.find_element(:id, 'user_password_confirmation')
   
-  # sleep 3
+
   name.send_keys(user2)
   email.send_keys(user2)
   password.send_keys(pass)
   confirmation.send_keys(pass)
   d.find_element(:name,"commit").click
-# sleep 3
 
 
-# # サインアップ2
-# d.get(url+"/users/sign_up")
-# name = d.find_element(:id, 'user_name')
-# email = d.find_element(:id, 'user_email')
-# password = d.find_element(:id, 'user_password')
-# confirmation = d.find_element(:id, 'user_password_confirmation')
 
 
-# name.send_keys("tech-camp1")
-# email.send_keys("tech@camp1")
-# password.send_keys("techcamp")
-# confirmation.send_keys("techcamp")
-# d.find_element(:name,"commit").click
 
-# # サインイン
-# d.get(url+"/users/sign_in")
-# email = d.find_element(:id, 'user_email')
-# password = d.find_element(:id, 'user_password')
-# email.send_keys("tech@camp1")
-# password.send_keys("techcamp")
-# d.find_element(:name,"commit").click
-sleep 3
 
 # グループ作成
 d.get(url+"/groups/new")
 #want グループの名前ランダムで入れる。
 if true
+wait.until {d.find_element(:id,"group_name").displayed?}
 d.find_element(:id,"group_name").send_keys('tsr')
 sleep 1
 d.find_element(:id, 'user-search-field').send_keys("t")
@@ -109,7 +92,7 @@ d.find_element(:name,"commit").click
 # element = driver.switch_to.active_element
 # element.send_keys('アクティブな要素に入力', :enter)
 
-
+sleep 5
 
 # what 画像送信
 d.find_element(:id,"message_image").send_keys('/Users/tech-camp/Desktop/test.jpg')
@@ -120,4 +103,4 @@ d.find_element(:id,'message_content').send_keys('test')
 d.find_element(:id,"message_image").send_keys('/Users/tech-camp/Desktop/test.jpg')
 d.find_element(:name,"commit").click
 
-# sleep 30
+sleep 30
