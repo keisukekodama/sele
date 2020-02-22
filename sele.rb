@@ -5,7 +5,7 @@ d = Selenium::WebDriver.for :chrome
 # 自分の
 # url = "http://54.92.62.121/"
 # 受講生の
-url = "http://localhost:3000/" 
+url = "http://52.193.255.194" 
 
 # サインアップ1
 d.get(url+"/users/sign_up")
@@ -102,4 +102,4 @@ d.find_element(:id,'message_content').send_keys('test')
 d.find_element(:id,"message_image").send_keys('/Users/tech-camp/Desktop/test.jpg')
 d.find_element(:name,"commit").click
 
-sleep 30
+sleep 100
