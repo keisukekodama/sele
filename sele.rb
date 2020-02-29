@@ -2,9 +2,10 @@ require 'selenium-webdriver'
 wait = Selenium::WebDriver::Wait.new(:timeout => 60)
 d = Selenium::WebDriver.for :chrome
 
-user1="tech@camps9asa"
-user2="tech@camp1ssa"
-pass="techcamp3"
+user1 = "tech@camps9asa"
+user2 = "tech@camp1ssa"
+pass = "techcamp3"
+group_name = "test-group"
 # 自分の
 # url = "http://localhost:3000/"
 # 受講生の
@@ -41,6 +42,7 @@ url = "http://54.64.54.29"
 #   d.find_element(:name,"commit").click
 
 #   puts "ログイン済み"
+
   #ログイン
   d.get(url+"/users/sign_in")
   email = d.find_element(:id, 'user_email')
@@ -53,7 +55,7 @@ url = "http://54.64.54.29"
 # グループ作成
 d.get(url+"/groups/new")
 wait.until {d.find_element(:id,"group_name").displayed?}
-d.find_element(:id,"group_name").send_keys('tsr')
+d.find_element(:id,"group_name").send_keys(group_name)
 
 sleep 1
 d.find_element(:id, 'user-search-field').send_keys("t")
@@ -68,7 +70,10 @@ puts "" if wait.until {
   /追加/ .match(d.page_source)
 }
 
-sleep 1
+sleep 2
+d.save_screenshot("/Users/tech-camp/Desktop/chat-space-ss/グループ新規作成画面.png")
+
+
 #want 検索のランダム化
 d.find_element(:class,"user-search-add").click
 d.find_element(:name,"commit").click
@@ -124,7 +129,7 @@ sleep 3
 d.find_element(:id,'message_content').send_keys('test')
 d.find_element(:id,"message_image").send_keys('/Users/tech-camp/Desktop/test.jpg')
 d.find_element(:name,"commit").click
-d.save_screenshot("/Users/tech-camp/Desktop/chat-space-ss/a.png")
+
 
 if /test/ .match(d.page_source)
   puts "非同期通信のメッセージと画像の同時送信成功" 
@@ -144,6 +149,8 @@ else
   puts "問題なし" 
 end
 
+sleep 2
+d.save_screenshot("/Users/tech-camp/Desktop/chat-space-ss/非同期通信画面.png")
 
 d.switch_to.window(d.window_handles[0])
 
@@ -157,7 +164,7 @@ puts "" if wait.until {
   /tes/ .match(d.page_source)
 }
 
-d.save_screenshot("/Users/tech-camp/Desktop/chat-space-ss/b.png")
+d.save_screenshot("/Users/tech-camp/Desktop/chat-space-ss/自動更新画面.png")
 if /undefined/ .match(d.page_source)
   puts "問題あり" 
   sleep 180
