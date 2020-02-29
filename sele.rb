@@ -1,15 +1,16 @@
 require 'selenium-webdriver'
 wait = Selenium::WebDriver::Wait.new(:timeout => 60)
 d = Selenium::WebDriver.for :chrome
+d.manage.window.resize_to(800, 900)
 # 自分の
 # url = "http://localhost:3000/"
 
-user1 = "tech@casmps9asa"
-user2 = "tech@csamp1ssa"
+user1 = "tech@campfdff"
+user2 = "tech@caff2ff"
 pass = "techcamp3"
-group_name = "test-group"
+group_name = "testgroup"
 # 受講生のURLを記入
-url = "http://54.64.54.29" 
+url = "http://18.177.80.19" 
 
 
 # サインアップ1
@@ -91,10 +92,12 @@ d.execute_script("window.open()")
 d.get(url+"/groups/1/messages")
 
 
-sleep 3
+sleep 1
 # what メッセージ送信
 textelement = d.find_element(:id,'message_content')
+sleep 1
 textelement.send_keys('tes')
+sleep 1
 d.find_element(:name,"commit").click
 
 
@@ -114,7 +117,7 @@ puts "" if wait.until {
 # what 画像送信
 d.find_element(:id,"message_image").send_keys("/Users/tech-camp/Desktop/test.jpg")
 d.find_element(:name,"commit").click
-
+sleep 1
 if /test.jp/ .match(d.page_source)
   puts "非同期通信の画像送信成功"
 else
@@ -125,8 +128,8 @@ puts "" if wait.until {
   /test.jpg/ .match(d.page_source)
 }
 
-sleep 3
-# what 画像送信＋メッセージ送信ここで連続で押すとエラーが出るため手動で押す
+sleep 1
+# what 画像送信＋メッセージ送信
 d.find_element(:id,'message_content').send_keys('test')
 d.find_element(:id,"message_image").send_keys('/Users/tech-camp/Desktop/test.jpg')
 d.find_element(:name,"commit").click
