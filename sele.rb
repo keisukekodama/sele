@@ -1,56 +1,57 @@
 require 'selenium-webdriver'
 wait = Selenium::WebDriver::Wait.new(:timeout => 60)
 d = Selenium::WebDriver.for :chrome
-
-user1 = "tech@camps9asa"
-user2 = "tech@camp1ssa"
-pass = "techcamp3"
-group_name = "test-group"
 # 自分の
 # url = "http://localhost:3000/"
-# 受講生の
+
+user1 = "tech@casmps9asa"
+user2 = "tech@csamp1ssa"
+pass = "techcamp3"
+group_name = "test-group"
+# 受講生のURLを記入
 url = "http://54.64.54.29" 
 
-# # サインアップ1
-# d.get(url+"/users/sign_up")
-# name = d.find_element(:id, 'user_name')
-# email = d.find_element(:id, 'user_email')
-# password = d.find_element(:id, 'user_password')
-# confirmation = d.find_element(:id, 'user_password_confirmation')
 
-# name.send_keys(user1)
-# email.send_keys(user1)
-# password.send_keys(pass)
-# confirmation.send_keys(pass)
-# d.find_element(:name,"commit").click
-# # wait.until {d.find_element(:class, "fa-cog").displayed?}
-# # ログアウト
-#   d.find_element(:class, "fa-cog").click
-#   d.find_element(:class, "btn").click
-#   d.find_element(:class, "btn").click
-# wait.until {d.find_element(:id, 'user_name').displayed?}
-# # サインアップ2
-#   name = d.find_element(:id, 'user_name')
-#   email = d.find_element(:id, 'user_email')
-#   password = d.find_element(:id, 'user_password')
-#   confirmation = d.find_element(:id, 'user_password_confirmation')
+# サインアップ1
+d.get(url+"/users/sign_up")
+name = d.find_element(:id, 'user_name')
+email = d.find_element(:id, 'user_email')
+password = d.find_element(:id, 'user_password')
+confirmation = d.find_element(:id, 'user_password_confirmation')
 
-#   name.send_keys(user2)
-#   email.send_keys(user2)
-#   password.send_keys(pass)
-#   confirmation.send_keys(pass)
-#   d.find_element(:name,"commit").click
-
-#   puts "ログイン済み"
-
-  #ログイン
-  d.get(url+"/users/sign_in")
+name.send_keys(user1)
+email.send_keys(user1)
+password.send_keys(pass)
+confirmation.send_keys(pass)
+d.find_element(:name,"commit").click
+# wait.until {d.find_element(:class, "fa-cog").displayed?}
+# ログアウト
+  d.find_element(:class, "fa-cog").click
+  d.find_element(:class, "btn").click
+  d.find_element(:class, "btn").click
+wait.until {d.find_element(:id, 'user_name').displayed?}
+# サインアップ2
+  name = d.find_element(:id, 'user_name')
   email = d.find_element(:id, 'user_email')
   password = d.find_element(:id, 'user_password')
-  email.send_keys(user1)
+  confirmation = d.find_element(:id, 'user_password_confirmation')
+
+  name.send_keys(user2)
+  email.send_keys(user2)
   password.send_keys(pass)
+  confirmation.send_keys(pass)
   d.find_element(:name,"commit").click
+
   puts "ログイン済み"
+
+  # #ログイン
+  # d.get(url+"/users/sign_in")
+  # email = d.find_element(:id, 'user_email')
+  # password = d.find_element(:id, 'user_password')
+  # email.send_keys(user1)
+  # password.send_keys(pass)
+  # d.find_element(:name,"commit").click
+  # puts "ログイン済み"
   
 # グループ作成
 d.get(url+"/groups/new")
@@ -111,7 +112,7 @@ puts "" if wait.until {
  sleep 3
 
 # what 画像送信
-d.find_element(:id,"message_image").send_keys('/Users/tech-camp/Desktop/test.jpg')
+d.find_element(:id,"message_image").send_keys("/Users/tech-camp/Desktop/test.jpg")
 d.find_element(:name,"commit").click
 
 if /test.jp/ .match(d.page_source)
