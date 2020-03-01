@@ -5,12 +5,12 @@ d.manage.window.resize_to(800, 900)
 # 自分の
 # url = "http://localhost:3000/"
 
-user1 = "tech@campfdff"
-user2 = "tech@caff2ff"
+user1 = "tech@cadfsff"
+user2 = "tech@cafffff"
 pass = "techcamp3"
-group_name = "testgroup"
+group_name = "testgssrop"
 # 受講生のURLを記入
-url = "http://18.177.80.19" 
+url = "http://18.180.5.236" 
 
 
 # サインアップ1
@@ -95,12 +95,11 @@ d.get(url+"/groups/1/messages")
 sleep 1
 # what メッセージ送信
 textelement = d.find_element(:id,'message_content')
-sleep 1
 textelement.send_keys('tes')
-sleep 1
+
 d.find_element(:name,"commit").click
 
-
+sleep 2
 if /tes/ .match(d.page_source)
   puts "非同期通信のメッセージ送信成功"
 else
@@ -117,7 +116,7 @@ puts "" if wait.until {
 # what 画像送信
 d.find_element(:id,"message_image").send_keys("/Users/tech-camp/Desktop/test.jpg")
 d.find_element(:name,"commit").click
-sleep 1
+sleep 3
 if /test.jp/ .match(d.page_source)
   puts "非同期通信の画像送信成功"
 else
@@ -157,7 +156,7 @@ sleep 2
 d.save_screenshot("/Users/tech-camp/Desktop/chat-space-ss/非同期通信画面.png")
 
 d.switch_to.window(d.window_handles[0])
-
+sleep 2
 if /tes/ .match(d.page_source)
   puts "自動更新成功" 
 else
