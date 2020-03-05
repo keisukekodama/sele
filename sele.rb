@@ -1,16 +1,16 @@
 require 'selenium-webdriver'
-wait = Selenium::WebDriver::Wait.new(:timeout => 60)
+wait = Selenium::WebDriver::Wait.new(:timeout => 1800)
 d = Selenium::WebDriver.for :chrome
 d.manage.window.resize_to(800, 900)
 # 自分の
 # url = "http://localhost:3000/"
 
-user1 = "tech@cadfsff"
-user2 = "tech@cafffff"
+user1 = "tech@caaf13"
+user2 = "tech@caf23"
 pass = "techcamp3"
-group_name = "testgssrop"
+group_name = "testgswrop"
 # 受講生のURLを記入
-url = "http://18.180.5.236" 
+url = "http://18.180.72.227/" 
 
 
 # サインアップ1
@@ -104,6 +104,7 @@ if /tes/ .match(d.page_source)
   puts "非同期通信のメッセージ送信成功"
 else
   puts "非同期通信のメッセージ送信失敗"
+  wait
 end
 
 puts "" if wait.until {
@@ -129,19 +130,20 @@ puts "" if wait.until {
 
 sleep 1
 # what 画像送信＋メッセージ送信
-d.find_element(:id,'message_content').send_keys('test')
+d.find_element(:id,'message_content').send_keys('チェック')
 d.find_element(:id,"message_image").send_keys('/Users/tech-camp/Desktop/test.jpg')
 d.find_element(:name,"commit").click
 
-
-if /test/ .match(d.page_source)
+sleep 2
+if /チェック/ .match(d.page_source)
   puts "非同期通信のメッセージと画像の同時送信成功" 
 else
   puts "非同期通信のメッセージと画像の同時送信失敗" 
+  wait
 end
 
 puts "" if wait.until {
-  /test/ .match(d.page_source)
+  /チェック/ .match(d.page_source)
 }
 
 
@@ -157,14 +159,15 @@ d.save_screenshot("/Users/tech-camp/Desktop/chat-space-ss/非同期通信画面.
 
 d.switch_to.window(d.window_handles[0])
 sleep 2
-if /tes/ .match(d.page_source)
+if /チェック/ .match(d.page_source)
   puts "自動更新成功" 
 else
   puts "自動更新失敗" 
+  wait
 end
 
 puts "" if wait.until {
-  /tes/ .match(d.page_source)
+  /チェック/ .match(d.page_source)
 }
 
 d.save_screenshot("/Users/tech-camp/Desktop/chat-space-ss/自動更新画面.png")
