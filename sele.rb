@@ -5,8 +5,8 @@ d.manage.window.resize_to(800, 900)
 # 自分の
 # url = "http://localhost:3000/"
 
-user1 = "tech@caaf13"
-user2 = "tech@caf23"
+user1 = "tech@caaf1aa3"
+user2 = "tech@caf23a"
 pass = "techcamp3"
 group_name = "testgswrop"
 # 受講生のURLを記入
@@ -62,15 +62,7 @@ d.find_element(:id,"group_name").send_keys(group_name)
 sleep 1
 d.find_element(:id, 'user-search-field').send_keys("t")
 
-if /追加/ .match(d.page_source)
-  puts "インクリメンタルサーチ成功"
-else
-  puts "インクリメンタルサーチ失敗"
-end
 
-puts "" if wait.until {
-  /追加/ .match(d.page_source)
-}
 
 sleep 2
 d.save_screenshot("/Users/tech-camp/Desktop/chat-space-ss/グループ新規作成画面.png")
@@ -81,6 +73,16 @@ d.find_element(:class,"user-search-add").click
 d.find_element(:name,"commit").click
 sleep 1
 
+if /削除/ .match(d.page_source)
+  puts "インクリメンタルサーチ成功"
+else
+  puts "インクリメンタルサーチ失敗"
+end
+
+puts "" if wait.until {
+  /削除/ .match(d.page_source)
+
+}
 
 d.get(url+"/groups/1/messages")
 sleep 3
