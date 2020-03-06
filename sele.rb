@@ -5,12 +5,12 @@ d.manage.window.resize_to(800, 900)
 # 自分の
 # url = "http://localhost:3000/"
 
-user1 = "tech@caaf1aa3"
-user2 = "tech@caf23a"
+user1 = "tech@caaf0f3"
+user2 = "tech@caf03"
 pass = "techcamp3"
-group_name = "testgswrop"
+group_name = "testgswkrop"
 # 受講生のURLを記入
-url = "http://18.180.72.227/" 
+url = "http://18.180.66.251" 
 
 
 # サインアップ1
@@ -70,19 +70,22 @@ d.save_screenshot("/Users/tech-camp/Desktop/chat-space-ss/グループ新規作�
 
 #want 検索のランダム化
 d.find_element(:class,"user-search-add").click
-d.find_element(:name,"commit").click
-sleep 1
+
+sleep 2
 
 if /削除/ .match(d.page_source)
   puts "インクリメンタルサーチ成功"
 else
   puts "インクリメンタルサーチ失敗"
+  wait
 end
-
+sleep 1
 puts "" if wait.until {
   /削除/ .match(d.page_source)
 
 }
+
+d.find_element(:name,"commit").click
 
 d.get(url+"/groups/1/messages")
 sleep 3
