@@ -123,7 +123,7 @@ else
   wait
 end
 
-puts "非同期通信のメッセージ送信で不具合が起きているようです。手動で確認しましょう" if wait.until {
+puts "" if wait.until {
   /Graphical_User_Interface/ .match(d.page_source)
 }
 
@@ -140,7 +140,7 @@ else
   puts "非同期通信の画像送信失敗"
 end
 
-puts "非同期通信の画像送信で不具合が起きているようです。手動で確認しましょう" if wait.until {
+puts "" if wait.until {
   /test.jpg/ .match(d.page_source)
 }
 
@@ -169,7 +169,7 @@ else
   wait
 end
 
-puts "非同期通信のメッセージと画像の同時送信で不具合が起きているようです。手動で確認しましょう" if wait.until {
+puts "" if wait.until {
   /HyperText_Markup_Language/ .match(d.page_source)
 }
 
@@ -193,7 +193,7 @@ else
   wait
 end
 
-puts "自動更新で不具合が起きているようです。手動で確認しましょう" if wait.until {
+puts "" if wait.until {
   /HyperText_Markup_Language/ .match(d.page_source)
 }
 
