@@ -185,7 +185,8 @@ sleep 2
 d.save_screenshot("/Users/tech-camp/Desktop/chat-space-ss/非同期通信画面.png")
 
 d.switch_to.window(d.window_handles[0])
-sleep 2
+
+sleep 4
 if /HyperText_Markup_Language/ .match(d.page_source)
   puts "自動更新成功" 
 else
