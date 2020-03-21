@@ -5,12 +5,12 @@ d.manage.window.resize_to(800, 900)
 # 自分の
 # url = "http://localhost:3000/"
 
-user1 = "tech@caaf0f3"
-user2 = "tech@caf03"
+user1 = "tech@ca6af2"
+user2 = "tech@ca6f02"
 pass = "techcamp3"
 group_name = "testgswkrop"
 # 受講生のURLを記入
-url = "http://18.180.66.251" 
+url = "http://18.179.184.144" 
 
 
 # サインアップ1
@@ -99,21 +99,32 @@ d.get(url+"/groups/1/messages")
 
 sleep 1
 # what メッセージ送信
-textelement = d.find_element(:id,'message_content')
-textelement.send_keys('tes')
+
+if d.find_elements(:id, 'message_content').size > 0
+   d.find_element(:id,'message_content').send_keys('Graphical_User_Interface')
+  sleep 4
+elsif d.find_elements(:id, 'message_text').size > 0
+    d.find_element(:id,'message_text').send_keys('Graphical_User_Interface')
+  
+elsif d.find_elements(:id,'message_body').size > 0
+    d.find_element(:id,'message_body').send_keys('Graphical_User_Interface')
+else
+    puts "idが違うからエラーでてます。issueに上げましょう！"
+    
+end
 
 d.find_element(:name,"commit").click
 
 sleep 2
-if /tes/ .match(d.page_source)
+if /Graphical_User_Interface/ .match(d.page_source)
   puts "非同期通信のメッセージ送信成功"
 else
   puts "非同期通信のメッセージ送信失敗"
   wait
 end
 
-puts "" if wait.until {
-  /tes/ .match(d.page_source)
+puts "非同期通信のメッセージ送信で不具合が起きているようです。手動で確認しましょう" if wait.until {
+  /Graphical_User_Interface/ .match(d.page_source)
 }
 
 
@@ -129,26 +140,37 @@ else
   puts "非同期通信の画像送信失敗"
 end
 
-puts "" if wait.until {
+puts "非同期通信の画像送信で不具合が起きているようです。手動で確認しましょう" if wait.until {
   /test.jpg/ .match(d.page_source)
 }
 
 sleep 1
 # what 画像送信＋メッセージ送信
-d.find_element(:id,'message_content').send_keys('チェック')
+if d.find_elements(:id,'message_content').size > 0
+  d.find_element(:id,'message_content').send_keys('HyperText_Markup_Language')
+    
+  elsif d.find_elements(:id,'message_text').size > 0
+    d.find_element(:id,'message_text').send_keys('HyperText_Markup_Language')
+  
+  elsif d.find_elements(:id,'message_body').size > 0
+    d.find_element(:id,'message_body').send_keys('HyperText_Markup_Language')
+  else
+    puts "idが違うからエラーでてます。issueに上げましょう！"
+    
+end
 d.find_element(:id,"message_image").send_keys('/Users/tech-camp/Desktop/test.jpg')
 d.find_element(:name,"commit").click
 
 sleep 2
-if /チェック/ .match(d.page_source)
+if /HyperText_Markup_Language/ .match(d.page_source)
   puts "非同期通信のメッセージと画像の同時送信成功" 
 else
   puts "非同期通信のメッセージと画像の同時送信失敗" 
   wait
 end
 
-puts "" if wait.until {
-  /チェック/ .match(d.page_source)
+puts "非同期通信のメッセージと画像の同時送信で不具合が起きているようです。手動で確認しましょう" if wait.until {
+  /HyperText_Markup_Language/ .match(d.page_source)
 }
 
 
@@ -164,15 +186,15 @@ d.save_screenshot("/Users/tech-camp/Desktop/chat-space-ss/非同期通信画面.
 
 d.switch_to.window(d.window_handles[0])
 sleep 2
-if /チェック/ .match(d.page_source)
+if /HyperText_Markup_Language/ .match(d.page_source)
   puts "自動更新成功" 
 else
   puts "自動更新失敗" 
   wait
 end
 
-puts "" if wait.until {
-  /チェック/ .match(d.page_source)
+puts "自動更新で不具合が起きているようです。手動で確認しましょう" if wait.until {
+  /HyperText_Markup_Language/ .match(d.page_source)
 }
 
 d.save_screenshot("/Users/tech-camp/Desktop/chat-space-ss/自動更新画面.png")
