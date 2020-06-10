@@ -11,7 +11,7 @@ pass = "techcamp3"
 group_name = "testgswkrop"
 group_name2 = "testgswkrop2"
 # 受講生のURLを記入
-url = "http://18.177.194.86" 
+url = "http://3.112.114.65" 
 
 
 # サインアップ1
@@ -32,7 +32,7 @@ d.find_element(:name,"commit").click
   sleep 2
   if d.find_elements(:class, "btn").size > 0
     d.find_element(:class, "btn").click
-   sleep 4
+   sleep 2
   elsif d.find_elements(:class, "Button").size > 0
   d.find_element(:class, "Button").click
   else
@@ -42,7 +42,7 @@ d.find_element(:name,"commit").click
 
   if d.find_elements(:class, "btn").size > 0
      d.find_element(:class, "btn").click
-  sleep 4
+  sleep 2
   elsif d.find_elements(:class, "Button").size > 0
   d.find_element(:class, "Button").click
   else
@@ -82,7 +82,7 @@ d.find_element(:id,"group_name").send_keys(group_name)
 
 if d.find_elements(:id, 'user-search-field').size > 0
   d.find_element(:id, 'user-search-field').send_keys("t")
-sleep 4
+sleep 2
 elsif d.find_elements(:id, "UserSearch__field").size > 0
 d.find_element(:id, "UserSearch__field").send_keys("t")
 else
@@ -102,7 +102,7 @@ d.save_screenshot("/Users/tech-camp/Desktop/chat-space-ss/グループ新規作�
 
 if d.find_elements(:class,"user-search-add").size > 0
   d.find_element(:class,"user-search-add").click
-sleep 4
+sleep 2
 elsif d.find_elements(:class, "ChatMember__add").size > 0
 d.find_element(:class, "ChatMember__add").click
 else
@@ -135,7 +135,7 @@ d.find_element(:id,"group_name").send_keys(group_name2)
 
 if d.find_elements(:id, 'user-search-field').size > 0
   d.find_element(:id, 'user-search-field').send_keys("t")
-sleep 4
+sleep 2
 elsif d.find_elements(:id, "UserSearch__field").size > 0
 d.find_element(:id, "UserSearch__field").send_keys("t")
 else
@@ -155,7 +155,7 @@ d.save_screenshot("/Users/tech-camp/Desktop/chat-space-ss/グループ新規作�
 
 if d.find_elements(:class,"user-search-add").size > 0
   d.find_element(:class,"user-search-add").click
-sleep 4
+sleep 2
 elsif d.find_elements(:class, "ChatMember__add").size > 0
 d.find_element(:class, "ChatMember__add").click
 else
@@ -180,7 +180,7 @@ puts "" if wait.until {
 d.find_element(:name,"commit").click
 
 d.get(url+"/groups/1/messages")
-sleep 3
+sleep 2
 #make new tab
 d.execute_script("window.open()") 
 
@@ -194,7 +194,7 @@ sleep 1
 
 if d.find_elements(:id, 'message_content').size > 0
    d.find_element(:id,'message_content').send_keys('Graphical_User_Interface')
-  sleep 4
+  sleep 2
 elsif d.find_elements(:id, 'message_text').size > 0
     d.find_element(:id,'message_text').send_keys('Graphical_User_Interface')
   
@@ -278,7 +278,7 @@ d.save_screenshot("/Users/tech-camp/Desktop/chat-space-ss/非同期通信画面.
 
 d.switch_to.window(d.window_handles[0])
 
-sleep 4
+sleep 2
 if /HyperText_Markup_Language/ .match(d.page_source)
   puts "自動更新成功" 
 else
