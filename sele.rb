@@ -1,16 +1,17 @@
 require 'selenium-webdriver'
-wait = Selenium::WebDriver::Wait.new(:timeout => 1800)
+wait = Selenium::WebDriver::Wait.new(:timeout => 180000)
 d = Selenium::WebDriver.for :chrome
 d.manage.window.resize_to(800, 900)
 # 自分の
 # url = "http://localhost:3000/"
 
-user1 = "tech@ca6af2"
-user2 = "tech@ca6f02"
+user1 = "tech@ca00004"
+user2 = "tech@ca98984"
 pass = "techcamp3"
 group_name = "testgswkrop"
+group_name2 = "testgswkrop2"
 # 受講生のURLを記入
-url = "http://18.179.184.144" 
+url = "http://18.177.194.86" 
 
 
 # サインアップ1
@@ -28,8 +29,26 @@ d.find_element(:name,"commit").click
 # wait.until {d.find_element(:class, "fa-cog").displayed?}
 # ログアウト
   d.find_element(:class, "fa-cog").click
-  d.find_element(:class, "btn").click
-  d.find_element(:class, "btn").click
+  sleep 2
+  if d.find_elements(:class, "btn").size > 0
+    d.find_element(:class, "btn").click
+   sleep 4
+  elsif d.find_elements(:class, "Button").size > 0
+  d.find_element(:class, "Button").click
+  else
+     puts "idが違うからエラーでてます。issueに上げましょう！"
+  end
+  sleep 2
+
+  if d.find_elements(:class, "btn").size > 0
+     d.find_element(:class, "btn").click
+  sleep 4
+  elsif d.find_elements(:class, "Button").size > 0
+  d.find_element(:class, "Button").click
+  else
+     puts "idが違うからエラーでてます。issueに上げましょう！"
+  sleep 2
+  end
 wait.until {d.find_element(:id, 'user_name').displayed?}
 # サインアップ2
   name = d.find_element(:id, 'user_name')
@@ -59,8 +78,18 @@ d.get(url+"/groups/new")
 wait.until {d.find_element(:id,"group_name").displayed?}
 d.find_element(:id,"group_name").send_keys(group_name)
 
-sleep 1
-d.find_element(:id, 'user-search-field').send_keys("t")
+
+
+if d.find_elements(:id, 'user-search-field').size > 0
+  d.find_element(:id, 'user-search-field').send_keys("t")
+sleep 4
+elsif d.find_elements(:id, "UserSearch__field").size > 0
+d.find_element(:id, "UserSearch__field").send_keys("t")
+else
+  puts "idが違うからエラーでてます。issueに上げましょう！"
+sleep 2
+end
+
 
 
 
@@ -69,7 +98,70 @@ d.save_screenshot("/Users/tech-camp/Desktop/chat-space-ss/グループ新規作�
 
 
 #want 検索のランダム化
-d.find_element(:class,"user-search-add").click
+
+
+if d.find_elements(:class,"user-search-add").size > 0
+  d.find_element(:class,"user-search-add").click
+sleep 4
+elsif d.find_elements(:class, "ChatMember__add").size > 0
+d.find_element(:class, "ChatMember__add").click
+else
+  puts "idが違うからエラーでてます。issueに上げましょう！"
+sleep 2
+end
+
+sleep 2
+
+if /削除/ .match(d.page_source)
+  puts "インクリメンタルサーチ成功"
+else
+  puts "インクリメンタルサーチ失敗"
+  wait
+end
+sleep 1
+puts "" if wait.until {
+  /削除/ .match(d.page_source)
+
+}
+
+d.find_element(:name,"commit").click
+
+# グループ作成2
+d.get(url+"/groups/new")
+wait.until {d.find_element(:id,"group_name").displayed?}
+d.find_element(:id,"group_name").send_keys(group_name2)
+
+
+
+if d.find_elements(:id, 'user-search-field').size > 0
+  d.find_element(:id, 'user-search-field').send_keys("t")
+sleep 4
+elsif d.find_elements(:id, "UserSearch__field").size > 0
+d.find_element(:id, "UserSearch__field").send_keys("t")
+else
+  puts "idが違うからエラーでてます。issueに上げましょう！"
+sleep 2
+end
+
+
+
+
+sleep 2
+d.save_screenshot("/Users/tech-camp/Desktop/chat-space-ss/グループ新規作成画面.png")
+
+
+#want 検索のランダム化
+
+
+if d.find_elements(:class,"user-search-add").size > 0
+  d.find_element(:class,"user-search-add").click
+sleep 4
+elsif d.find_elements(:class, "ChatMember__add").size > 0
+d.find_element(:class, "ChatMember__add").click
+else
+  puts "idが違うからエラーでてます。issueに上げましょう！"
+sleep 2
+end
 
 sleep 2
 
